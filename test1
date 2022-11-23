@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Homework6 {
+
+## Код мы начинаем читать с верхнеуровневых вызовов и углубляясь в методы(так что блок с мэйн лучше оставить в самом начале
+
     public static void checkYear(int year) {
         if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
             System.out.printf("%d is a leap year\n", year);
@@ -13,6 +16,22 @@ public class Homework6 {
         }
     }
 
+## Наименование метода, лучше отражает название findAppVersionForClient
+## Если ввести новую переменную то код сократится String clientName=null; (см пример)
+## Также можно вынести выбор имени в отдельный метод (т.к. теоретически возможно увеличение количества клинтов и реализация через отдельный метод будет более удобна)
+//Пример:
+String getClientName(int clientOS){
+//  
+// if(clientOS == 0){
+//    return clientName="Android";
+//  }
+//  if(clientOS == 1){
+//    return clientName="iOS";
+//   }
+// return null; 
+//}
+//выше нужно будет проверить на null;
+ 
     public static void checkOS(int deviceYear, int clientOS) {
         int currentYear = LocalDate.now().getYear();
         if (clientOS == 1) {
@@ -36,6 +55,7 @@ public class Homework6 {
         }
     }
 
+## Наименование метода, лучше отражает название calcDeliveryDays
     public static int calcDeliveryTime(int deliveryDistance) {
         int deliveryTime = 1;
         if (deliveryDistance > 20) {
@@ -50,7 +70,8 @@ public class Homework6 {
         }
         return deliveryTime;
     }
-
+## Наименование метода, checkDoubles плохое(У нас есть тип Double и когда метод так назван есть неоднозначность, более лечшее название checkTextForDuplicatesSymbol
+## Текущая реализация проверяет только соседние символы, но не проверяет если есть дупликаты например в начале и в конце, то есть строка `abcda` будет валидной
     public static void checkDoubles(String str) {
         for (int i = 0; i < str.length() - 1; i++) {
             if (str.charAt(i) == str.charAt(i + 1)) {
@@ -69,6 +90,8 @@ public class Homework6 {
         }
     }
 
+## Генерация значений задевает не весь диапазон,для данного диапазона random.nextInt(200_000 - 100 + 1) + 100;
+## Желательно в наименовании метода в конце добавить массив чего мы генерируем
     public static int[] generateRandomArray() {
         java.util.Random random = new java.util.Random();
         int[] arr = new int[30];
@@ -78,12 +101,15 @@ public class Homework6 {
         return arr;
     }
 
+## Наименование метода, getAverage плохое, более понятное getAveragePaysPerDay
+## Две последние строки можно заменить return sum / arr.length;
+
     public static double getAverage(int[] arr) {
         double sum = getSum(arr);
         double averageValue = sum / arr.length;
         return averageValue;
     }
-
+## Наименование метода, getAverage плохое, более понятное getSumPaysPerDay
     public static double getSum(int[] arr) {
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -95,6 +121,7 @@ public class Homework6 {
 
     public static void main(String[] args) {
         //task1
+        ## input относится не к task1 а ко всем таскам, можно вынести из под комментария
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the year: ");
         int y = input.nextInt();
